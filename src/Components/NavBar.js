@@ -136,9 +136,9 @@ class NavBar extends Component {
               </Toolbar>
             </AppBar>
             <Grid container spacing={24}>
-       
-            {data.length === 0 ? 'No DATA YET' : data.drinks.map(drink => 
+            {!data.drinks ? <h1 className="no-data">Go home, you're drunk. We can't serve you.</h1> : data.drinks.map(drink => 
                <Grid key={drink.idDrink} item xs={12} sm={6} md={3}>
+               
               <Card 
                 key={drink.idDrink}
                 title={drink.strDrink}
