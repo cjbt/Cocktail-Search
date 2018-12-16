@@ -91,7 +91,7 @@ class NavBar extends Component {
     data: [],
     anchorEl: null,
     categories: [],
-    categoy: ""
+    category: ""
   };
   componentDidMount() {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
@@ -137,7 +137,9 @@ class NavBar extends Component {
       .then(res => res.json())
       .then(data => realDrinks.push(data.drinks[0]));
     });
-    console.log(realDrinks)
+    // console.log(realDrinks)
+    console.log(this.state.categories)
+    // console.log(data.drinks)
   }
   getAlcoholic = () => {};
   render() {
@@ -159,7 +161,7 @@ class NavBar extends Component {
             <div className={classes.grow} />
             <div>
               <Select
-                value={this.state.categoy}
+                value={this.state.category}
                 onChange={this.getCats}
                 inputProps={{
                   name: "category",
