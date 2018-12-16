@@ -58,7 +58,7 @@ class RecipeReviewCard extends React.Component {
   };
 
   render() {
-    const { classes, key, title, category, description, img, date } = this.props;
+    const { classes, key, title, category, description, img, date, ingredients, measure} = this.props;
 
     return (
       <Card className={classes.card}>
@@ -81,11 +81,6 @@ class RecipeReviewCard extends React.Component {
           image={img}
           title={category}
         />
-        {/* <CardContent>
-          <Typography component="p" className={classes.overflow}>
-            {description}
-          </Typography>
-        </CardContent> */}
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
@@ -111,6 +106,7 @@ class RecipeReviewCard extends React.Component {
               {description}
             </Typography>
             <Typography paragraph>Ingredients:</Typography>
+              {ingredients + measure}
             <Typography paragraph>
               
             </Typography>
