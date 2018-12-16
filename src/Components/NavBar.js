@@ -98,6 +98,11 @@ class NavBar extends Component {
     .then(res => res.json())
     .then(data => this.setState({ data }))
   }
+  getRandom = (e) =>{
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+    .then(res => res.json())
+    .then(data => this.setState({ data }))
+  }
   render(){
     const { classes } = this.props;
     const { data } = this.state;
@@ -106,7 +111,7 @@ class NavBar extends Component {
           <AppBar position="static">
                <Toolbar>
                  <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                   <MenuIcon />
+                   <MenuIcon onClick={this.getRandom}/>
                  </IconButton>
                  <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                    Cocktails
