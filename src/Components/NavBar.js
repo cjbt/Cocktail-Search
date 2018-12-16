@@ -91,7 +91,7 @@ class NavBar extends Component {
     data: [],
     anchorEl: null,
     categories: [],
-    category: ""
+    categoy: ""
   };
   componentDidMount() {
     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
@@ -137,9 +137,14 @@ class NavBar extends Component {
       .then(res => res.json())
       .then(data => realDrinks.push(data.drinks[0]));
     });
-    // console.log(realDrinks)
-    console.log(this.state.categories)
-    // console.log(data.drinks)
+
+    // current iteration: [ [{object}], [{object}], [{object}]]
+    let newRealDrinks = realDrinks.reduce((a, b) => [...a, ...b], []);
+
+    // new iteration: [{object}, {object}, {object}] theoretically, but I'm getting a length of 0
+
+    // gg
+    this.setState({categories: newRealDrinks})
   }
   getAlcoholic = () => {};
   render() {
@@ -161,7 +166,7 @@ class NavBar extends Component {
             <div className={classes.grow} />
             <div>
               <Select
-                value={this.state.category}
+                value={this.state.categoy}
                 onChange={this.getCats}
                 inputProps={{
                   name: "category",
