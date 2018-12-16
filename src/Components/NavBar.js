@@ -140,6 +140,7 @@ class NavBar extends Component {
 
     // current iteration: [ [{object}], [{object}], [{object}]]
 
+    
     // let newRealDrinks = realDrinks.reduce((a, b) => [...a, ...b], []);
     
     // this logic does the same as ahove, but is better performace.
@@ -148,7 +149,8 @@ class NavBar extends Component {
     // new iteration: [{object}, {object}, {object}] theoretically, but I'm getting a length of 0
 
     // gg
-    this.setState({categories: JSON.stringify(newRealDrinks)})
+    // this.setState({categories: JSON.stringify(newRealDrinks)})
+    this.setState({categories: newRealDrinks})
 
     console.log(newRealDrinks)
   }
