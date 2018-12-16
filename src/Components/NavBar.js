@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
+import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 import SearchIcon from '@material-ui/icons/Search';
 import Card from './Card'
 import Grid from '@material-ui/core/Grid';
@@ -27,8 +28,13 @@ const styles = theme => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -12,
+    marginLeft: 12,
     marginRight: 20,
+    
+  },
+  center:{
+    paddingTop: 20,
+    justifyContent: 'center',
   },
   title: {
     display: 'none',
@@ -98,10 +104,13 @@ class NavBar extends Component {
     .then(res => res.json())
     .then(data => this.setState({ data }))
   }
-  getRandom = (e) =>{
+  getRandom = () =>{
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
     .then(res => res.json())
     .then(data => this.setState({ data }))
+  }
+  getAlcoholic = () =>{
+
   }
   render(){
     const { classes } = this.props;
@@ -110,13 +119,14 @@ class NavBar extends Component {
     return( <div className={classes.root}>
           <AppBar position="static">
                <Toolbar>
-                 <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                   <MenuIcon onClick={this.getRandom}/>
-                 </IconButton>
                  <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                    Cocktails
                  </Typography>
                  <div className={classes.grow} />
+                 <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                   {/* <MenuIcon onClick={this.getRandom}/> */}
+                   <ThreeSixtyIcon className={classes.icon} onClick={this.getRandom} />
+                 </IconButton>
                  <div className={classes.search}>
                    <div className={classes.searchIcon}>
                      <SearchIcon />
@@ -140,7 +150,7 @@ class NavBar extends Component {
                 </div>
               </Toolbar>
             </AppBar>
-            <Grid container spacing={24}>
+            <Grid container spacing={24} className={classes.center}>
             {!data.drinks ? <h1 className="no-data">Go home, you're drunk. We can't serve you.</h1> : data.drinks.map(drink => 
                <Grid key={drink.idDrink} item xs={12} sm={6} md={3}>
                
