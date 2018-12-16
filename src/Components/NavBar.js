@@ -127,21 +127,17 @@ class NavBar extends Component {
       }`
     )
       .then(res => res.json())
-      .then(data => this.setState({ data }));
-      // .then(data => this.getCategoryObj(data));
+      // .then(data => this.setState({ data }));
+      .then(data => this.getCategoryObj(data));
   };
   getCategoryObj = (data) => {
-    const drinkIDs = [];
-    const filterDrinks = [];
-
+    let realDrinks = [];
     data.drinks.map( drink => {
-      drinkIDs.push(drink.idDrink)
-    });
-    drinkIDs.map(id => {
-      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`)
       .then(res => res.json())
-      .then(data => filterDrinks.push(data))
-    })
+      .then(data => realDrinks.push(data.drinks[0]));
+    });
+    console.log(realDrinks)
   }
   getAlcoholic = () => {};
   render() {
